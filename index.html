@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RFID Attendance Dashboard</title>
+  <style>
+    body { font-family: Arial; background: #0f172a; color: white; text-align: center; }
+    h1 { margin-top: 20px; }
+    table { margin: auto; border-collapse: collapse; width: 60%; }
+    th, td { padding: 10px; border: 1px solid #ccc; }
+    .present { color: lime; }
+    .absent { color: red; }
+  </style>
+</head>
+<body>
 
+<h1>Class Attendance Dashboard</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td>Noah</td>
+    <td class="present">Present</td>
+  </tr>
+  <tr>
+    <td>Jayvin</td>
+    <td class="present">Present</td>
+  </tr>
+  <tr>
+    <td>Erik</td>
+    <td class="absent">Absent</td>
+  </tr>
+</table>
+
+<script>
+// later you connect this to Arduino serial / backend
+console.log("Waiting for RFID scans...");
+</script>
+
+</body>
+</html>

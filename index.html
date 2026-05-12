@@ -15,28 +15,53 @@
 
 <h1>Class Attendance Dashboard</h1>
 
-<table>
+<table id="attendanceTable">
   <tr>
     <th>Name</th>
     <th>Status</th>
   </tr>
-  <tr>
-    <td>Noah</td>
-    <td class="present">Present</td>
-  </tr>
-  <tr>
-    <td>Jayvin</td>
-    <td class="present">Present</td>
-  </tr>
-  <tr>
-    <td>Erik</td>
-    <td class="absent">Absent</td>
-  </tr>
 </table>
 
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
 <script>
-// later you connect this to Arduino serial / backend
-console.log("Waiting for RFID scans...");
+  const supabase = window.supabase.createClient(
+    'https://wgrohfyljmylamvnwjpj.supabase.co',
+    'sb_publishable_CtgmqdL-YSPFimgvFZtUSg_7s8U0-MH'
+  );
+
+  // Load attendance from database
+  async function loadAttendance() {
+    const { data, error } = await supabase
+      .from('attendance')
+      .select('*');
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    const table = document.getElementById("attendanceTable");
+
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+
+      const nameTd = document.createElement("td");
+      nameTd.textContent = row.name;
+
+      const statusTd = document.createElement("td");
+      statusTd.textContent = "Present";
+      statusTd.className = "present";
+
+      tr.appendChild(nameTd);
+      tr.appendChild(statusTd);
+      table.appendChild(tr);
+    });
+  }
+
+  loadAttendance();
+
+  console.log("Connected to Supabase 🔥");
 </script>
 
 </body>

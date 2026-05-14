@@ -51,21 +51,6 @@ td{
     font-weight:bold;
 }
 
-button{
-    margin-top:20px;
-    padding:10px 20px;
-    border:none;
-    border-radius:8px;
-    background:#22c55e;
-    color:white;
-    font-size:16px;
-    cursor:pointer;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
 .statusBox{
     margin-top:20px;
     font-size:18px;
@@ -91,10 +76,6 @@ button:hover{
 <div class="statusBox" id="statusBox">
     Waiting for RFID scans...
 </div>
-
-<button onclick="fakeScan('Noah')">Test Scan Noah</button>
-<button onclick="fakeScan('Jayvin')">Test Scan Jayvin</button>
-<button onclick="fakeScan('Erik')">Test Scan Erik</button>
 
 <!-- SUPABASE -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
@@ -189,7 +170,7 @@ async function loadAttendance(){
 
 async function markAttendance(name){
 
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from('attendance')
         .insert([
             {
@@ -211,16 +192,6 @@ async function markAttendance(name){
         `✅ ${name} marked present`;
 
     loadAttendance();
-
-}
-
-// =====================================
-// TEST BUTTONS
-// =====================================
-
-function fakeScan(name){
-
-    markAttendance(name);
 
 }
 
